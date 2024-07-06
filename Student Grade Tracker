@@ -1,0 +1,56 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
+
+public class StudentGradeAnalyzer {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<Integer> grades = new ArrayList<>();
+
+        // Input grades until the user enters a non-integer value
+        System.out.println("Enter students' grades (enter a non-integer value to finish):");
+        while (scanner.hasNextInt()) {
+            int grade = scanner.nextInt();
+            grades.add(grade);
+        }
+
+        if (grades.isEmpty()) {
+            System.out.println("No grades entered. Exiting program.");
+            return;
+        }
+
+        // Calculate average, highest, and lowest grades
+        double average = calculateAverage(grades);
+        int highest = calculateHighest(grades);
+        int lowest = calculateLowest(grades);
+
+        // Output results
+        System.out.println("\nGrade Analysis Results:");
+        System.out.println("Grades entered: " + grades);
+        System.out.println("Average grade: " + average);
+        System.out.println("Highest grade: " + highest);
+        System.out.println("Lowest grade: " + lowest);
+
+        scanner.close();
+    }
+
+    // Method to calculate the average grade
+    public static double calculateAverage(ArrayList<Integer> grades) {
+        int sum = 0;
+        for (int grade : grades) {
+            sum += grade;
+        }
+        return (double) sum / grades.size();
+    }
+
+    // Method to calculate the highest grade
+    public static int calculateHighest(ArrayList<Integer> grades) {
+        return Collections.max(grades);
+    }
+
+    // Method to calculate the lowest grade
+    public static int calculateLowest(ArrayList<Integer> grades) {
+        return Collections.min(grades);
+    }
+}
